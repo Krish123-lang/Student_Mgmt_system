@@ -60,3 +60,13 @@ class CustomUser(AbstractUser):
 ...
 AUTH_USER_MODEL = 'app.CustomUser'
 ```
+3. `admin.py`
+```
+from .models import CustomUser
+from django.contrib.auth.admin import UserAdmin
+
+class UserModel(UserAdmin):
+    list_display = ['username', 'user_type']
+
+admin.site.register(CustomUser, UserModel)
+```
