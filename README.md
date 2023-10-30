@@ -41,3 +41,22 @@ app/Hod_Views.py
 app/Staff_Views.py
 app/Student_Views.py
 ```
+# 3. Customer User Model
+1. `model.py`
+```
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    USER = (
+        (1, 'HOD'),
+        (2, 'STAFF'),
+        (3, 'STUDENT'),
+    )
+    user_type = models.CharField(choices=USER, max_length=50, default=1)
+    profile_pic = models.ImageField(upload_to='media/profile_pic')
+```
+2. `settings.py`
+```
+...
+AUTH_USER_MODEL = 'app.CustomUser'
+```
